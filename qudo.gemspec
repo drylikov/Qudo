@@ -1,0 +1,32 @@
+
+# frozen_string_literal: true
+
+lib = File.expand_path('lib', __dir__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'qudo/version'
+
+Gem::Specification.new do |spec|
+  spec.name    = 'qudo'
+  spec.version = Qudo::VERSION
+  spec.authors = ['Denis Rylikov']
+  spec.email   = ['denis.rylikov@protonmail.com']
+
+  spec.summary     = 'Write a short summary, because RubyGems requires one.'
+  spec.description = 'Write a longer description or delete this line.'
+  spec.homepage    = 'https://github.com/drylikov'
+
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
+  spec.bindir        = 'exe'
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ['lib']
+
+  spec.required_ruby_version = '>= 2.3.0'
+
+  # Main dependencies
+  spec.add_runtime_dependency 'hashie'
+  spec.add_runtime_dependency 'hooks'
+
+  spec.add_development_dependency 'bundler', '>= 1.17'
+end

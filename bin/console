@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'pathname'
+require 'qudo'
+require 'qudo/utils'
+
+Bundler.require(:default, :development)
+Qudo::Utils.recursive_require Pathname.new(__dir__).join('..', 'lib', 'qudo')
+Pry.start
